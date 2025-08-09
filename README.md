@@ -148,7 +148,7 @@ graph TB
 ### 1. 克隆项目
 
 ```bash
-git clone https://github.com/your-org/molly-eth-monitor.git
+git clone https://github.com/felton-web3/molly-eth-monitor-1.0.0.git
 cd molly-eth-monitor
 ```
 
