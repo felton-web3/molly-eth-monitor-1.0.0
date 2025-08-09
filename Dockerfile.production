@@ -1,0 +1,32 @@
+# Base image
+FROM --platform=${BUILDPLATFORM} cgr.dev/chainguard/rust:latest-dev@sha256:faf49718aaa95c798ed1dfdf3e4edee2cdbc3790c8994705ca6ef35972128459 AS base
+
+WORKDIR /usr/app
+
+USER root
+RUN apk update && apk add openssl-dev
+
+COPY . .
+RUN --mount=type=cache,target=/usr/local/cargo/registry \
+    --mount=type=cache,target=/app/target \
+    cargo install --root /usr/app --path . --locked
+
+# Wolfi image
+FROM --platform=${BUILDPLATFORM} cgr.dev/chainguard/wolfi-base
+
+ARG version=3.12
+
+RUN apk add bash python-${version} py${version}-pip nodejs jq
+
+# removes apk and unneeded wolfi-base tools.
+RUN apk del wolfi-base apk-tools
+
+WORKDIR /app
+COPY --from=base --chown=nonroot:nonroot /usr/app/bin/openzeppelin-monitor /app/openzeppelin-monitor
+
+ENV METRICS_PORT=8081
+
+EXPOSE ${METRICS_PORT}/tcp
+
+# starting up
+ENTRYPOINT ["/app/openzeppelin-monitor"]

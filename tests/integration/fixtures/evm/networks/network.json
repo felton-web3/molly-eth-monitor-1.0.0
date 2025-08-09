@@ -1,0 +1,29 @@
+{
+  "network_type": "EVM",
+  "slug": "ethereum_mainnet",
+  "name": "Ethereum Mainnet",
+  "rpc_urls": [
+    {
+      "url": {
+        "type": "Plain",
+        "value": "https://eth.drpc.org"
+      },
+      "type_": "rpc",
+      "weight": 100
+    },
+    {
+      "type_": "rpc",
+      "url": {
+        "type": "Plain",
+        "value": "https://ethereum-rpc.publicnode.com"
+      },
+      "weight": 90
+    }
+  ],
+  "chain_id": 1,
+  "block_time_ms": 12000,
+  "confirmation_blocks": 12,
+  "cron_schedule": "0 */1 * * * *",
+  "max_past_blocks": 50,
+  "store_blocks": true
+}

@@ -1,0 +1,55 @@
+{
+  "name": "Large Transfer of USDC Token",
+  "paused": false,
+  "networks": [
+    "stellar_testnet"
+  ],
+  "addresses": [
+    {
+      "address": "CAVLP5DH2GJPZMVO7IJY4CVOD5MWEFTJFVPD2YY2FQXOQHRGHK4D6HLP"
+    },
+    {
+      "address": "CBIELTK6YBZJU5UP2WWQEUCYKLPU6AUNZ2BQ4WWFEIE3USCIHMXQDAMA"
+    },
+    {
+      "address": "CDLZFC3SYJYDZT7K67VZ75HPJVIEUVNIXF47ZG2FB2RMQQVU2HHGCYSC"
+    },
+    {
+      "address": "CB7ZA2CJ4EECSV62PJSSV6DVYK25IRGRKWIB5354TGANJGXRUFK4LNO3"
+    },
+    {
+      "address": "CBWRWC2IFNRXKAW2HG5473V5U25OMUKVIE3BFZBIWOOD3VLEIBUIOQG6"
+    },
+    {
+      "address": "CDMZ6LU66KEMLKI3EJBIGXTZ4KZ2CRTSHZETMY3QQZBWRKVKB5EIOHTX"
+    }
+  ],
+  "match_conditions": {
+    "functions": [
+      {
+        "signature": "transfer(Address,Address,I128)",
+        "expression": "amount > 1000"
+      },
+      {
+        "signature": "upsert_data(Map<String,String>)",
+        "expression": "data.myKey1 >= 1234 AND data.myKey2 == 'Hello, world!'"
+      }
+    ],
+    "events": [
+      {
+        "signature": "transfer(Address,Address,String,I128)",
+        "expression": "0 == GDF32CQINROD3E2LMCGZUDVMWTXCJFR5SBYVRJ7WAAIAS3P7DCVWZEFY AND 3 >= 2240"
+      }
+    ],
+    "transactions": [
+      {
+        "status": "Success",
+        "expression": "value >= 0"
+      }
+    ]
+  },
+  "trigger_conditions": [],
+  "triggers": [
+    "example_trigger_slack"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "evm_large_transfer_usdc_slack": {
+    "name": "Large Transfer Slack Notification",
+    "trigger_type": "slack",
+    "config": {
+      "slack_url": {
+        "type": "plain",
+        "value": "https://hooks.slack.com/services/A/B/C"
+      },
+      "message": {
+        "title": "large_transfer_slack triggered",
+        "body": "Large transfer of ${events.0.args.value} USDC from ${events.0.args.from} to ${events.0.args.to} | https://etherscan.io/tx/${transaction.hash}#eventlog"
+      }
+    }
+  },
+  "evm_large_transfer_usdc_slack_markdown": {
+    "name": "Large Transfer Slack Notification Markdown",
+    "trigger_type": "slack",
+    "config": {
+      "slack_url": {
+        "type": "plain",
+        "value": "https://hooks.slack.com/services/A/B/C"
+      },
+      "message": {
+        "title": "large_transfer_slack triggered",
+        "body": "*USDC Transfer Details*\n*Amount:* ${events.0.args.value} USDC\n*From:* ${events.0.args.from}\n*To:* ${events.0.args.to}\n*Transaction:* <https://etherscan.io/tx/${transaction.hash}#eventlog|View on Etherscan>"
+      }
+    }
+  },
+  "stellar_large_swap_by_dex_slack": {
+    "name": "Large Swap By Dex Slack Notification",
+    "trigger_type": "slack",
+    "config": {
+      "slack_url": {
+        "type": "plain",
+        "value": "https://hooks.slack.com/services/A/B/C"
+      },
+      "message": {
+        "title": "large_swap_by_dex_slack triggered",
+        "body": "${monitor.name} triggered because of a large swap of ${functions.0.args.out_min} tokens | https://stellar.expert/explorer/public/tx/${transaction.hash}"
+      }
+    }
+  }
+}

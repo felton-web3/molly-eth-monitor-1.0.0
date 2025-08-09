@@ -1,0 +1,44 @@
+{
+  "evm_large_transfer_usdc_discord": {
+    "name": "Large Transfer Discord Notification",
+    "trigger_type": "discord",
+    "config": {
+      "discord_url": {
+        "type": "plain",
+        "value": "https://discord.com/api/webhooks/123-456-789"
+      },
+      "message": {
+        "title": "large_transfer_discord triggered",
+        "body": "Large transfer of ${events.0.args.value} USDC from ${events.0.args.from} to ${events.0.args.to} | https://etherscan.io/tx/${transaction.hash}#eventlog"
+      }
+    }
+  },
+  "evm_large_transfer_usdc_discord_markdown": {
+    "name": "EVM Large Transfer USDC Discord Notification",
+    "trigger_type": "discord",
+    "config": {
+      "discord_url": {
+        "type": "plain",
+        "value": "https://discord.com/api/webhooks/123-456-789"
+      },
+      "message": {
+        "title": "large_transfer_discord triggered",
+        "body": "**Large transfer** of **${events.0.args.value} USDC** from `${events.0.args.from}` to `${events.0.args.to}`\n[View on Etherscan](https://etherscan.io/tx/${transaction.hash}#eventlog)"
+      }
+    }
+  },
+  "stellar_large_swap_by_dex_discord": {
+    "name": "Large Swap By Dex Discord Notification",
+    "trigger_type": "discord",
+    "config": {
+      "discord_url": {
+        "type": "plain",
+        "value": "https://discord.com/api/webhooks/123-456-789"
+      },
+      "message": {
+        "title": "large_swap_by_dex_discord triggered",
+        "body": "${monitor.name} triggered because of a large swap of ${functions.0.args.out_min} tokens | https://stellar.expert/explorer/public/tx/${transaction.hash}"
+      }
+    }
+  }
+}

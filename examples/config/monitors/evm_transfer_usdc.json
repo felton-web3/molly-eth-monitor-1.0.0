@@ -1,0 +1,74 @@
+{
+  "name": "Large Transfer of USDC Token",
+  "paused": false,
+  "networks": ["ethereum_mainnet"],
+  "addresses": [
+    {
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "contract_spec": [
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        },
+        {
+          "inputs": [
+            { "internalType": "address", "name": "to", "type": "address" },
+            { "internalType": "uint256", "name": "value", "type": "uint256" }
+          ],
+          "name": "transfer",
+          "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        }
+      ]
+    }
+  ],
+  "match_conditions": {
+    "functions": [
+      {
+        "signature": "transfer(address,uint256)",
+        "expression": null
+      }
+    ],
+    "events": [
+      {
+        "signature": "Transfer(address,address,uint256)",
+        "expression": "value > 10000000000"
+      }
+    ],
+    "transactions": [
+      {
+        "status": "Success",
+        "expression": null
+      }
+    ]
+  },
+  "trigger_conditions": [{
+    "script_path": "./config/filters/evm_filter_block_number.sh",
+    "language": "Bash",
+    "arguments": ["--verbose"],
+    "timeout_ms": 1000
+  }],
+  "triggers": ["evm_large_transfer_usdc_slack", "evm_large_transfer_usdc_email"]
+}
