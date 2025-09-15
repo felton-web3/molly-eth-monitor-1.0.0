@@ -101,7 +101,7 @@ jobs:
           subject-path: artifacts/**/openzeppelin-monitor
           github-token: ${{ steps.gh-app-token.outputs.token }}
       - name: Update release please artifacts
-        uses: softprops/action-gh-release@ab50eebb6488051c6788d97fa95232267c6a4e23  # main
+        uses: softprops/action-gh-release@19cd0bcd2b95a5f9e0aab8377b3cae33e51c2234  # main
         with:
           tag_name: ${{ env.TAG }}
           files: artifacts/**/openzeppelin-monitor*.tar.gz
